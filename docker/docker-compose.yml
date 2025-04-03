@@ -1,0 +1,24 @@
+services:
+  mariadb:
+    image: mariadb:11-ubi
+    container_name: mariadb_db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - horoscope_mariadb_data:/var/lib/mysql
+
+  redis:
+    image: redis:8.0-M04-bookworm
+    container_name: redis_cache
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - horoscope_redis_data:/data
+
+volumes:
+  horoscope_mariadb_data:
+  horoscope_redis_data:
