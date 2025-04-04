@@ -29,7 +29,7 @@ func startServer() {
 	}
 }
 
-func initialize() {
+func cacheWarmer() {
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", cnf.Database.Username, cnf.Database.Password, cnf.Database.Host, cnf.Database.Port, cnf.Database.Database)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
@@ -42,7 +42,6 @@ func initialize() {
 }
 
 func Execute() {
-
-	initialize()
+	cacheWarmer()
 	startServer()
 }
