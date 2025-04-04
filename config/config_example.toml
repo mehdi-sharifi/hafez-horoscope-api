@@ -13,3 +13,7 @@ host = "localhost"
 port = "6379"
 password = ""
 db = 0
+
+[minio]
+audioendpoint = "http://localhost:9000/hafez-media/mp3"
+imageendpoint = "http://localhost:9000/hafez-media/images"
