@@ -18,7 +18,18 @@ services:
       - "6379:6379"
     volumes:
       - horoscope_redis_data:/data
-
+  minio:
+    image: minio/minio
+    container_name: minio
+    env_file:
+      - .env
+    ports:
+      - "9000:9000"
+      - "9090:9090"
+    command: server /data --console-address ":9090"
+    volumes:
+      - horoscope_minio_data:/data
 volumes:
   horoscope_mariadb_data:
   horoscope_redis_data:
+  horoscope_minio_data:
