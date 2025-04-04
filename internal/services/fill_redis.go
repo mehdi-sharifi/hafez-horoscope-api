@@ -1,16 +1,16 @@
-package database
+package services
 
 import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/redis/go-redis/v9"
 	"gorm.io/gorm"
 	"hafez-horoscope-api/internal/models"
+	"hafez-horoscope-api/utils"
 	"log"
 )
 
-func FillRedis(db *gorm.DB, rdb *redis.Client) {
+func FillRedis(db *gorm.DB, rdb *redis.RedisClient) {
 	ctx := context.Background()
 
 	// Fetch poems from MariaDB
@@ -29,7 +29,7 @@ func FillRedis(db *gorm.DB, rdb *redis.Client) {
 
 		// Store in Redis with ID as the key
 		key := fmt.Sprintf("%d", poem.ID)
-		err = rdb.Set(ctx, key, jsonValue, 0).Err()
+		err = rdb.Set(ctx, key, jsonValue, 0)
 		if err != nil {
 			log.Println("Error storing in Redis:", err)
 		} else {

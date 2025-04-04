@@ -26,6 +26,7 @@ type DatabaseConfig struct {
 type RedisConfig struct {
 	Host string
 	Port string
+	DB   int
 }
 
 func LoadConfig(path string) (*Config, error) {
