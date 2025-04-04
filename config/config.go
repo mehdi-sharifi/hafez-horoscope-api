@@ -9,6 +9,7 @@ type Config struct {
 	Server   ServerConfig
 	Database DatabaseConfig
 	Redis    RedisConfig
+	Minio    MinioConfig
 }
 
 type ServerConfig struct {
@@ -27,6 +28,11 @@ type RedisConfig struct {
 	Host string
 	Port string
 	DB   int
+}
+
+type MinioConfig struct {
+	ImageEndpoint string
+	AudioEndpoint string
 }
 
 func LoadConfig(path string) (*Config, error) {
